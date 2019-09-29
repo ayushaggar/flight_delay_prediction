@@ -56,7 +56,43 @@ def train_model(train_data):
     # print (df.min(axis = 0))
     # print (df.max(axis = 0))
 
-    
+    # split data to train and test
+    train_set, test_set, y_train, y_test = train_test_split(
+        df.drop(["DELAY"], axis=1), df["DELAY"], random_state=25, test_size=0.2)
+
+    # Transforms features between 0 and 1
+    scaler = preprocessing.MinMaxScaler(feature_range=(0, 1))
+    scaler.fit(train_set)
+    X_train = scaler.transform(train_set)
+    X_test = scaler.transform(test_set)
+
+    # print (X_train.shape)
+    print("model start")
+
+    # gridsearch to find parameters
+    gsc = GridSearchCV(
+        estimator=RandomForestRegressor(),
+        param_grid={
+            'max_depth': [5, 7],
+            'max_features': [5, 10],
+            'n_estimators': [100],
+        },
+        cv=5, scoring='neg_mean_squared_error', verbose=0, n_jobs=-1)
+
+    grid_result = gsc.fit(X_train, y_train)
+    best_params = grid_result.best_params_
+    print(best_params)
+    final_model = RandomForestRegressor(
+        max_depth=best_params["max_depth"],
+        n_estimators=best_params["n_estimators"],
+        random_state=False,
+        verbose=False)
+    final_model.fit(X_train, y_train)
+    final_model.score(X_test, y_test)
+    y_pred = final_model.predict(X_test)
+    print (y_pred)
+    with open('flight_delay.pkl', 'wb') as fid:
+        pickle.dump(final_model, fid)
 
 
 def main():
