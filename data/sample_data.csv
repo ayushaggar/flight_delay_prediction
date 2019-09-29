@@ -1,0 +1,5 @@
+DATE,FROM,TO,AIRCRAFT,DURATION,STD,ATD,STA,ATA,FLIGHT_ID,STATUS,AIRLINE
+04/12/18,Kuala Lumpur (KUL),Yogyakarta (JOG),A320 (9M-AFD),2:29:00,9:30:00,9:39:00,11:15:00,Landed 11:08,ak346,Landed,ak
+03/12/18,Kuala Lumpur (KUL),Yogyakarta (JOG),A20N (9M-AGI),2:10:00,9:30:00,11:05:00,11:15:00,Landed 12:15,ak346,Landed,ak
+02/12/18,Kuala Lumpur (KUL),Yogyakarta (JOG),A20N (9M-AGL),2:05:00,9:30:00,9:42:00,11:15:00,Landed 10:47,ak346,Landed,ak
+01/12/18,Kuala Lumpur (KUL),Yogyakarta (JOG),A20N (9M-AGI),2:14:00,9:30:00,9:55:00,11:15:00,Landed 11:10,ak346,Landed,ak
